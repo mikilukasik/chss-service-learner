@@ -4,7 +4,7 @@ import { pollTasksForLearnerSocket } from './learnerSocket/pollTasksForLearnerSo
 import { sampleRequestHandler } from './learnerSocket/sampleRequestHandler';
 
 export const initRoutes = ({ msg }) => {
-  msg.static('/learner/', 'public');
+  // msg.static('/learner/', 'public');
 
   msg.on(...aggregateCompareModelsResultHandler);
   msg.on(...createCompareModelsResultHandler({ msg }));

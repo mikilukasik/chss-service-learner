@@ -13,7 +13,7 @@ export const aggregateCompareModelsResultHandler = [
     comms,
   ) => {
     const update = {
-      $pull: { 'context.unsolvedStartingFens': `${startingFen} ${white}` },
+      // $pull: { 'context.unsolvedStartingFens': `${startingFen} ${white}` },
       $inc: {
         [`context.results.${model1}.played`]: 1,
         [`context.results.${model2}.played`]: 1,

@@ -1,5 +1,6 @@
 import { compareModelsSolver } from './compareModels/compareModelsSolver';
 import { restartLearnersSolver } from './restartLearners/restartLearnersSolver';
+import { trainModelSolver } from './trainModel/trainModelSolver';
 
 export const initPoller = async ({ msg, onClose = () => {}, learnerSocket, command, solver }) => {
   const blank = () => {
@@ -35,5 +36,6 @@ export const initPoller = async ({ msg, onClose = () => {}, learnerSocket, comma
 
 export const taskSolvers = ({ msg, learnerSocket }) => {
   initPoller(Object.assign({ msg }, compareModelsSolver));
+  initPoller(Object.assign({ msg }, trainModelSolver));
   initPoller(Object.assign({ msg, learnerSocket }, restartLearnersSolver));
 };

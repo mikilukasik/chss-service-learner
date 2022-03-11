@@ -1,17 +1,10 @@
 import { fenSetNames } from '../utils/fenSets';
 
-export const compareModelsTask = {
-  command: 'models:compare',
+export const trainModelTask = {
+  command: 'model:train',
+  infinite: true,
   argShape: {
-    model1: {
-      type: 'select',
-      required: true,
-      dynamicValues: {
-        source: 'msgService',
-        command: 'getAllModelNames',
-      },
-    },
-    model2: {
+    model: {
       type: 'select',
       required: true,
       dynamicValues: {
@@ -23,7 +16,7 @@ export const compareModelsTask = {
       type: 'select',
       required: true,
       values: fenSetNames,
-      defaultValue: 2,
+      defaultValue: 800,
     },
   },
 };

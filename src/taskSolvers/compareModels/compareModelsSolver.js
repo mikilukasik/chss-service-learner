@@ -1,4 +1,4 @@
-import { getStartingFens } from './getStartingFens';
+import { getStartingFens } from '../../utils/fenSets';
 
 export const compareModelsSolver = {
   command: 'models:compare',
@@ -34,13 +34,13 @@ export const compareModelsSolver = {
       childTaskResultAggregator: {
         command: 'aggregateTaskResult:models:compare',
       },
-      parentUpdate: {
-        $push: {
-          'context.unsolvedStartingFens': {
-            $each: childTasks.map(({ startingFen, white }) => `${startingFen} ${white}`),
-          },
-        },
-      },
+      // parentUpdate: {
+      // $push: {
+      //   'context.unsolvedStartingFens': {
+      //     $each: childTasks.map(({ startingFen, white }) => `${startingFen} ${white}`),
+      //   },
+      // },
+      // },
     });
 
     await msg.do('task:setInProgress', { _id });
