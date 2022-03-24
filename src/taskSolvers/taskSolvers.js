@@ -1,8 +1,16 @@
 import { compareModelsSolver } from './compareModels/compareModelsSolver';
 import { restartLearnersSolver } from './restartLearners/restartLearnersSolver';
+import { runTrainingCycleSolver } from './runTrainingCycle/runTrainingCycle';
 import { trainModelSolver } from './trainModel/trainModelSolver';
 
-export const initPoller = async ({ msg, onClose = () => {}, learnerSocket, command, solver }) => {
+export const initPoller = async ({
+  msg,
+  onClose = () => {},
+  learnerSocket,
+  learnersControllerSocket,
+  command,
+  solver,
+}) => {
   const blank = () => {
     console.log('blank');
   };
@@ -29,13 +37,14 @@ export const initPoller = async ({ msg, onClose = () => {}, learnerSocket, comma
       continue;
     }
 
-    await solver({ msg, task, learnerSocket });
+    await solver({ msg, task, learnerSocket, learnersControllerSocket });
     sendAbort = blank;
   }
 };
 
-export const taskSolvers = ({ msg, learnerSocket }) => {
+export const taskSolvers = ({ msg, learnersControllerSocket }) => {
   initPoller(Object.assign({ msg }, compareModelsSolver));
   initPoller(Object.assign({ msg }, trainModelSolver));
-  initPoller(Object.assign({ msg, learnerSocket }, restartLearnersSolver));
+  initPoller(Object.assign({ msg }, runTrainingCycleSolver));
+  initPoller(Object.assign({ msg, learnersControllerSocket }, restartLearnersSolver));
 };

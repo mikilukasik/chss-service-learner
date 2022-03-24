@@ -5,7 +5,7 @@ export const compareModelsSolver = {
   solver: async ({ task, msg }) => {
     const {
       _id,
-      params: { fenSet, model1, model2 },
+      params: { fenSet, model1, model2, collectLessonFor },
     } = task;
 
     const childTasks = getStartingFens({ fenSet })
@@ -15,12 +15,14 @@ export const compareModelsSolver = {
           startingFen,
           black: model1,
           white: model2,
+          collectLessonFor,
         },
         {
           command: 'models:playGame',
           startingFen,
           black: model2,
           white: model1,
+          collectLessonFor,
         },
       ])
       .flat();

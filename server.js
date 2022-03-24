@@ -19,9 +19,9 @@ export default () => {
     .connect()
     .then(() => {
       // console.log('MSG connected: ' + SERVICE_NAME);
-      const { learnerSocket } = initRoutes({ msg });
+      const { learnerSocket, learnersControllerSocket } = initRoutes({ msg });
       initTasks({ msg });
-      taskSolvers({ msg, learnerSocket });
+      taskSolvers({ msg, learnerSocket, learnersControllerSocket });
     })
 
     .catch(console.error);
