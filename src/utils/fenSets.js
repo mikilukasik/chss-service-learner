@@ -3427,4 +3427,9 @@ export const getStartingFens = ({ fenSet }) => {
   return fenSets[fenSet];
 };
 
-export const fenSetNames = Object.keys(fenSets).concat(['random-step6-250', 'random-step6-500', 'random-step6-1000']);
+export const fenSetNames = Object.keys(fenSets).concat([
+  'random-step6-50',
+  'random-step6-250',
+  'random-step6-500',
+  'random-step6-1000',
+]);
